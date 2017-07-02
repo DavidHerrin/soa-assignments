@@ -1,20 +1,7 @@
-package com.cooksys.entity;
+package com.cooksys.dto;
 
-import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.cooksys.dto.datatype.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Entity
-public class ProjectManager implements BaseEntity<Long>{
+public class PMCountDto {
 	
-	@Id
-	@GeneratedValue
 	private Long id;
 	
 	private String firstName;
@@ -22,10 +9,6 @@ public class ProjectManager implements BaseEntity<Long>{
 	private String lastName;
 	
 	private Integer overdue;
-	
-	@OneToMany(mappedBy = "manager")
-	@JsonIgnore
-	private Set<Project> projects;
 
 	public Long getId() {
 		return id;
@@ -34,7 +17,7 @@ public class ProjectManager implements BaseEntity<Long>{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -59,14 +42,6 @@ public class ProjectManager implements BaseEntity<Long>{
 		this.overdue = overdue;
 	}
 
-	public Set<Project> getProjects() {
-		return projects;
-	}
-
-	public void setProjects(Set<Project> projects) {
-		this.projects = projects;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -83,7 +58,7 @@ public class ProjectManager implements BaseEntity<Long>{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ProjectManager other = (ProjectManager) obj;
+		PMCountDto other = (PMCountDto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -91,5 +66,5 @@ public class ProjectManager implements BaseEntity<Long>{
 			return false;
 		return true;
 	}
-	
+
 }

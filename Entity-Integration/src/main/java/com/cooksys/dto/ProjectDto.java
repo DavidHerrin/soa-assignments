@@ -1,42 +1,18 @@
-package com.cooksys.entity;
-
-
+package com.cooksys.dto;
 
 import java.sql.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import com.cooksys.entity.ProjectManager;
 
-import com.cooksys.dto.datatype.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Entity
-public class Project implements BaseEntity<Long> {
-
-	@Id
-	@GeneratedValue
+public class ProjectDto {
+	
 	private Long id;
-	
-	@ManyToOne
-	@JsonIgnore
-	private ProjectManager manager;
-	
-//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm a z")
+		
 	private Date startDate;
 	
-//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm a z")
 	private Date dueDate;
-		
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
+	private ProjectManager manager;
 
 	public ProjectManager getManager() {
 		return manager;
@@ -62,6 +38,14 @@ public class Project implements BaseEntity<Long> {
 		this.dueDate = dueDate;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,7 +62,7 @@ public class Project implements BaseEntity<Long> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Project other = (Project) obj;
+		ProjectDto other = (ProjectDto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -86,5 +70,6 @@ public class Project implements BaseEntity<Long> {
 			return false;
 		return true;
 	}
+
 	
 }

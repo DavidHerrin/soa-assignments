@@ -1,6 +1,7 @@
 package com.cooksys.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cooksys.dto.PMCountDto;
 import com.cooksys.dto.ProjectManagerDto;
+import com.cooksys.entity.Project;
 import com.cooksys.service.ProjectManagerService;
 
 import io.swagger.annotations.ApiOperation;
@@ -47,6 +50,18 @@ public class ProjectManagerController {
 	@ApiOperation(value = "", nickname = "getProjectManagerById")
 	public ProjectManagerDto get(@PathVariable Long id) {
 		return projectManagerService.get(id);
+	}
+	
+	@GetMapping("{id}/project")
+	@ApiOperation(value = "", nickname = "getProjectByProjectManagerById")
+	public Set<Project> getProjects(@PathVariable Long id) {
+		return projectManagerService.getProjects(id);
+	}
+	
+	@GetMapping("overdue")
+	@ApiOperation(value = "", nickname = "getAllOverdue")
+	public List<PMCountDto> getAllOverdue() {
+		return projectManagerService.getAllOverdue();
 	}
 
 	@PostMapping
